@@ -8,7 +8,8 @@ import 'package:plate_pal/service/my_app_navigation_service.dart';
 import '../../ui-kit/expandable_recipe_card.dart';
 
 class HomeView extends ConsumerWidget {
-  const HomeView({super.key});
+  final Recipe? recipe;
+  const HomeView({super.key, this.recipe});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,6 +20,8 @@ class HomeView extends ConsumerWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!model.hasFetchedOnInit) {
         controller.getRecipes(FirebaseAuth.instance.currentUser!.uid);
+      } else if (recipe != null) {
+        controller.refreshRecipe(FirebaseAuth.instance.currentUser!.uid, recipe!.id);
       }
     });
 
@@ -111,7 +114,8 @@ class HomeView extends ConsumerWidget {
 
 abstract class HomeController extends StateNotifier<HomeModel> {
   HomeController(super.state);
-  void getRecipes(String uid);
+  Future<void> getRecipes(String uid);
+  Future<void> refreshRecipe(String uid, String rid);
   void search(String term);
   void filter(BuildContext context);
   Future<void> reload(String uid);

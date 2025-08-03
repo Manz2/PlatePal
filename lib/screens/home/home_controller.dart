@@ -23,6 +23,21 @@ class HomeControllerImplmentation extends HomeController {
   }
 
   @override
+  Future<void> refreshRecipe(String uid, String rid) async {
+    Recipe? recipe = await _backendService.getOneRecipe(uid, rid);
+    List<Recipe> list = [...state.recipes];
+    int pos = list.indexWhere((recipe) => recipe.id == rid);
+    
+    if(recipe == null) { list.removeAt(pos); // Recipe got deleted in db
+    } else if(pos >= 0) { // Recipe got updated in db
+      list.replaceRange(pos, pos + 1, [recipe]); 
+    } else if(pos < 0) { // Recipe got created in db
+      list.add(recipe);
+    }
+    state = state.copyWith(recipes: list, hasFetchedOnInit: state.hasFetchedOnInit);
+  }
+
+  @override
   Future<void> search(String term) async {
     await getRecipes(FirebaseAuth.instance.currentUser!.uid);
     List<Recipe> temp = [];

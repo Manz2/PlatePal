@@ -99,7 +99,7 @@ class DetailsControllerImplementation extends DetailsController {
               child: Text(FlutterI18n.translate(context, "details.ok_delete")),
               onPressed: () {
                 _backendService.deleteRecipe(recipe);
-                _navigationService.routeHome(context);
+                _navigationService.routeHome(context, recipe);
                 final snackBar = SnackBar(
                   content:
                       Text(FlutterI18n.translate(context, "details.deleted")),

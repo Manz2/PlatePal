@@ -133,7 +133,7 @@ class ErstellenControllerImplementation extends ErstellenController {
   }
 
   @override
-  bool createRecipe(BuildContext context) {
+  Future<Recipe?> createRecipe(BuildContext context) async {
     bool oneNotSet = false;
     if (state.name == "") {
       state = state.copyWith(nameNotSet: true);
@@ -160,7 +160,7 @@ class ErstellenControllerImplementation extends ErstellenController {
       state = state.copyWith(stepsNotSet: false);
     }
     if (oneNotSet) {
-      return false;
+      return null;
     }
     if (!isValidUrl(state.webURL!) && state.webURL!.isNotEmpty) {
       state = state.copyWith(urlInvalid: true);
@@ -172,7 +172,7 @@ class ErstellenControllerImplementation extends ErstellenController {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      return false;
+      return null;
     } else {
       state = state.copyWith(urlInvalid: false);
     }
@@ -197,9 +197,9 @@ class ErstellenControllerImplementation extends ErstellenController {
         glutenfrei: state.glutenfrei,
         attachments: state.attachments,
         webURL: (state.webURL == "") ? null : state.webURL);
-    _backendService.pushRecipe(recipe, uid, state.isEdit);
-
-    return true;
+    String id = await _backendService.pushRecipe(recipe, uid, state.isEdit);
+    Recipe res = recipe.copyWith(id: id);
+    return res;
   }
 
   @override
@@ -359,8 +359,8 @@ class ErstellenControllerImplementation extends ErstellenController {
   }
 
   @override
-  void navigateBack(BuildContext context) {
-    _navigationService.routeHome(context);
+  void navigateBack(BuildContext context, Recipe? recipe) {
+    _navigationService.routeHome(context, recipe);
   }
 
   @override

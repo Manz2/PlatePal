@@ -53,7 +53,7 @@ class ErstellenView extends ConsumerWidget {
             onPressed: () async {
               if (await controller.deleteAll(context)) {
                 if (!context.mounted) return;
-                controller.navigateBack(context);
+                controller.navigateBack(context, null);
               }
             },
             icon: const Icon(Icons.arrow_back_sharp),
@@ -72,10 +72,11 @@ class ErstellenView extends ConsumerWidget {
             : FloatingActionButton.extended(
                 label: Text(FlutterI18n.translate(context, "create.update"),
                     style: TextStyle(fontSize: currentFontSize.toDouble())),
-                onPressed: () {
+                onPressed: () async {
                   controller.removeAttachmentsRemote();
-                  if (controller.createRecipe(context)) {
-                    controller.navigateBack(context);
+                  Recipe? returnRecipe = await controller.createRecipe(context);
+                  if (returnRecipe != null) {
+                    controller.navigateBack(context, returnRecipe);
                   } else {
                     final snackBar = SnackBar(
                       content: Text(FlutterI18n.translate(
@@ -322,9 +323,10 @@ class ErstellenView extends ConsumerWidget {
                         ),
                       if (!model.isEdit)
                         ElevatedButton(
-                          onPressed: () {
-                            if (controller.createRecipe(context)) {
-                              controller.navigateBack(context);
+                          onPressed: () async {
+                            Recipe? returnRecipe = await controller.createRecipe(context);
+                            if (returnRecipe != null) {
+                              controller.navigateBack(context, returnRecipe);
                             } else {
                               final snackBar = SnackBar(
                                 content: Text(FlutterI18n.translate(
@@ -359,7 +361,7 @@ class ErstellenView extends ConsumerWidget {
 abstract class ErstellenController extends StateNotifier<ErstellenModel> {
   ErstellenController(super.state);
 
-  bool createRecipe(BuildContext context);
+  Future<Recipe?> createRecipe(BuildContext context);
 
   bool isValidUrl(String url);
 
@@ -397,7 +399,7 @@ abstract class ErstellenController extends StateNotifier<ErstellenModel> {
 
   void setlink(String link);
 
-  void navigateBack(BuildContext context);
+  void navigateBack(BuildContext context, Recipe? recipe);
 
   Future<bool> addAttachments(BuildContext context);
 

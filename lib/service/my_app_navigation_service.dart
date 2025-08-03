@@ -4,7 +4,7 @@ import 'package:plate_pal/screens/home/home_model.dart';
 
 abstract class MyAppNavigationService {
   RouterDelegate<Object>? getRouterDelegate;
-  void routeHome(BuildContext context);
+  void routeHome(BuildContext context, Recipe? recipe);
   void routeCreate(BuildContext context);
   void routeEdit(BuildContext context, ErstellenModel model);
   void routeFavorites(BuildContext context);

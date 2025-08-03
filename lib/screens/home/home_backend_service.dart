@@ -6,6 +6,7 @@ abstract class HomeBackendService {
   Future<HomeServiceReturn> filterRecipes(
       bool vegan, bool vege, bool gl, String uid);
   Future<HomeServiceReturn> getAllRecipes(String uid);
+  Future<Recipe?> getOneRecipe(String uid, String rid);
 }
 
 @freezed

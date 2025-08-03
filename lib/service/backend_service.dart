@@ -47,6 +47,17 @@ class BackendService implements BackendServiceAggregator {
     return HomeServiceReturn(recipes: recipes);
   }
 
+  @override
+  Future<Recipe?> getOneRecipe(String uid, String rid) async {
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final DataSnapshot snapshot =
+        await ref.child("users").child(uid).child('rezepte').child(rid).get();
+    if (snapshot.exists) {
+      return getRecipeFrom(snapshot);
+    }
+    return null;
+  }
+
   Future<List<Recipe>> getGroupRecipes(
       DataSnapshot snapshot, DatabaseReference ref) async {
     List<Recipe> recipes = [];
@@ -280,7 +291,7 @@ class BackendService implements BackendServiceAggregator {
   }
 
   @override
-  Future<void> pushRecipe(Recipe recipe, String uid, bool isEdit) async {
+  Future<String> pushRecipe(Recipe recipe, String uid, bool isEdit) async {
     DatabaseReference ref =
         FirebaseDatabase.instance.ref().child("users/$uid/rezepte/");
     final newPostKey = isEdit
@@ -289,6 +300,7 @@ class BackendService implements BackendServiceAggregator {
     ref.child(newPostKey!).update(recipe.toJson());
     logger.d("created recipe with id:$newPostKey");
     ref.child(newPostKey).update({"id": newPostKey});
+    return newPostKey;
   }
 
   @override

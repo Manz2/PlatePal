@@ -18,10 +18,12 @@ class NavigationService implements NavigationServiceAggregator {
   RouterDelegate<Object>? getRouterDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) => FirebaseAuth.instance.currentUser != null
-            ? const HomeView()
-            : const LoginView(),
-        '/home': (context, state, data) => const HomeView(),
+        '/': (context, state, data) => FirebaseAuth.instance.currentUser == null
+            ? const LoginView()
+            : const HomeView(recipe: null),
+        '/home': (context, state, data) => data is Recipe 
+            ? HomeView(recipe: data)
+            : const HomeView(recipe: null),
         '/group': (context, state, data) => const GruppeView(),
         '/login': (context, state, data) => const LoginView(),
         '/favorites': (context, state, data) => const FavoriteView(),
@@ -38,8 +40,8 @@ class NavigationService implements NavigationServiceAggregator {
   );
 
   @override
-  void routeHome(BuildContext context) {
-    Beamer.of(context).beamToNamed('/home');
+  void routeHome(BuildContext context, Recipe? recipe) {
+    Beamer.of(context).beamToNamed('/home', data: recipe);
   }
 
   @override

@@ -75,7 +75,7 @@ class LoginControllerImplmentation extends LoginController {
         state =
             state.copyWith(username: "", password: "", passwordVisible: false);
         if (!context.mounted) return;
-        _navigationService.routeHome(context);
+        _navigationService.routeHome(context, null);
       }
     } on FirebaseAuthException {
       if (!context.mounted) return;

@@ -114,7 +114,7 @@ class AccountControllerImplmentation extends AccountController {
 
   @override
   void navigateHome(BuildContext context) {
-    _navigationService.routeHome(context);
+    _navigationService.routeHome(context, null);
   }
 
   @override

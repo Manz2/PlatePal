@@ -71,6 +71,6 @@ class FavoriteControllerImplmentation extends FavoriteController {
 
   @override
   void navigateHome(BuildContext context) {
-    _navigationService.routeHome(context);
+    _navigationService.routeHome(context, null);
   }
 }
