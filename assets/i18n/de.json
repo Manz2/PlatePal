@@ -49,7 +49,7 @@
   "details": {
     "delete_Title": "Rezept löschen",
     "instructions": "Zubereitung",
-    "ok_detete": "Löschen",
+    "ok_delete": "Löschen",
     "CancelButton": "Abbrechen",
     "delete": "Sind Sie sicher, dass Sie das Rezept löschen möchten?",
     "deleted": "Das Rezept wurde gelöscht.",

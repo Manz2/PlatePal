@@ -49,7 +49,7 @@
   "details": {
     "delete_Title": "Delete Recipe",
     "instructions": "Instructions",
-    "ok_detete": "Delete",
+    "ok_delete": "Delete",
     "CancelButton": "Cancel",
     "delete": "Are you sure you want to delete the recipe?",
     "deleted": "The recipe was deleted.",

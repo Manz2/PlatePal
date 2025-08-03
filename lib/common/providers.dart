@@ -46,7 +46,7 @@ class Providers {
   final AutoDisposeStateNotifierProvider<HomeController, HomeModel>
       homeControllerProvider =
       StateNotifierProvider.autoDispose<HomeController, HomeModel>(
-          (StateNotifierProviderRef ref) => HomeControllerImplmentation(
+          (Ref ref) => HomeControllerImplmentation(
                 backendService: ref.read(
                   providers.backendServiceProvider
                       as ProviderListenable<HomeBackendService>,
@@ -58,7 +58,7 @@ class Providers {
   final StateNotifierProvider<FilterController, FilterModel>
       filterControllerProvider =
       StateNotifierProvider<FilterController, FilterModel>(
-          (StateNotifierProviderRef ref) => FilterControllerImplmentation(
+          (Ref ref) => FilterControllerImplmentation(
                 navigationService: ref.read(providers.navigationServiceProvider
                     as ProviderListenable<MyAppNavigationService>),
               ));
@@ -66,7 +66,7 @@ class Providers {
   final StateNotifierProvider<LoginController, LoginModel>
       loginControllerProvider =
       StateNotifierProvider<LoginController, LoginModel>(
-          (StateNotifierProviderRef ref) => LoginControllerImplmentation(
+          (Ref ref) => LoginControllerImplmentation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<LoginBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider
@@ -76,7 +76,7 @@ class Providers {
   final StateNotifierProvider<FavoriteController, FavoriteModel>
       favoriteControllerProvider =
       StateNotifierProvider<FavoriteController, FavoriteModel>(
-          (StateNotifierProviderRef ref) => FavoriteControllerImplmentation(
+          (Ref ref) => FavoriteControllerImplmentation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<FavoritenBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider
@@ -86,7 +86,7 @@ class Providers {
   final StateNotifierProvider<AccountController, AccountModel>
       accountControllerProvider =
       StateNotifierProvider<AccountController, AccountModel>(
-          (StateNotifierProviderRef ref) => AccountControllerImplmentation(
+          (Ref ref) => AccountControllerImplmentation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<AccountBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider
@@ -95,7 +95,7 @@ class Providers {
   final AutoDisposeStateNotifierProvider<ErstellenController, ErstellenModel>
       erstellenControllerProvider =
       StateNotifierProvider.autoDispose<ErstellenController, ErstellenModel>(
-          (StateNotifierProviderRef ref) => ErstellenControllerImplementation(
+          (Ref ref) => ErstellenControllerImplementation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<ErstellenBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider
@@ -116,7 +116,7 @@ class Providers {
   final AutoDisposeStateNotifierProvider<DetailsController, DetailsModel>
       detailsViewControllerProvider =
       StateNotifierProvider.autoDispose<DetailsController, DetailsModel>(
-          (StateNotifierProviderRef ref) => DetailsControllerImplementation(
+          (Ref ref) => DetailsControllerImplementation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<DetailsBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider
@@ -126,7 +126,7 @@ class Providers {
   final AutoDisposeStateNotifierProvider<GruppeController, GruppeModel>
       gruppeControllerProvider =
       StateNotifierProvider.autoDispose<GruppeController, GruppeModel>(
-          (StateNotifierProviderRef ref) => GruppeControllerImplmentation(
+          (Ref ref) => GruppeControllerImplmentation(
                 backendService: ref.read(providers.backendServiceProvider
                     as ProviderListenable<GruppeBackendService>),
                 navigationService: ref.read(providers.navigationServiceProvider

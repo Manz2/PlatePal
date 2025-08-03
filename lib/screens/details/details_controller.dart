@@ -96,7 +96,7 @@ class DetailsControllerImplementation extends DetailsController {
               },
             ),
             TextButton(
-              child: Text(FlutterI18n.translate(context, "details.ok_detete")),
+              child: Text(FlutterI18n.translate(context, "details.ok_delete")),
               onPressed: () {
                 _backendService.deleteRecipe(recipe);
                 _navigationService.routeHome(context);

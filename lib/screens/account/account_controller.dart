@@ -135,7 +135,7 @@ class AccountControllerImplmentation extends AccountController {
               },
             ),
             TextButton(
-              child: Text(FlutterI18n.translate(context, "details.ok_detete")),
+              child: Text(FlutterI18n.translate(context, "details.ok_delete")),
               onPressed: () async {
                 await _backendService.deleteAccount(
                     userId: FirebaseAuth.instance.currentUser!.uid);

@@ -377,9 +377,6 @@ class BackendService implements BackendServiceAggregator {
         castedIngredients.add(i);
       }
     }
-    print("Mapper vegan: ${recipe.vegan}");
-    print("Mapper vegetarisch: ${recipe.vegetarisch}");
-    print("Mapper glutenfrei: ${recipe.glutenfrei}");
     return ErstellenModel(
         id: recipe.id,
         isImport: true,

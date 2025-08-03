@@ -34,7 +34,7 @@ String prompt = '''
     Suche  folgende  Elemente im FLießtext und trage sie im JSON ein:
     Identifiziere falls möglich eine Kurzbeschreibung und trage es unter description ein.
     Identifiziere falls möglich die Anleitung zur zubereitung und trage sie unter guideText ein.
-    Identifiziere falls möglich die Zutatenund trage sie unter ingredients ein.
+    Identifiziere falls möglich die Zutaten und trage sie unter ingredients ein.
     Identifiziere falls möglich den Namen des Rezepts und trage ihn unter title ein.
     Wichtig: Antworte nur mit dem neuen JSON String, der die Informationen aus dem Fließtext enthält, keine Erklärung."
     ''';
